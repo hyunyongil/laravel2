@@ -141,7 +141,7 @@ Route::get('auth/protected', [
 ]);
 
 Route::get('login', function() {
-    return "로그인 페이지 입니다당s";
+    return "로그인 페이지 입니다당";
 });
 
 
