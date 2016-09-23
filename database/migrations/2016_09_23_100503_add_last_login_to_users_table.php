@@ -12,7 +12,7 @@ class AddLastLoginToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->timestamp('last_login')->nullable();
         });
     }
@@ -24,7 +24,7 @@ class AddLastLoginToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('last_login');
         });
     }
