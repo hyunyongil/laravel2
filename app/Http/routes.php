@@ -10,16 +10,22 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return 'Hello World';
     //return view('welcome');
 });
-
+*/
+/*
+Route::get('/', function() {
+    throw new Exception('Some bad thing happened');
+});
+*/
+/*
 Route::get('hello/world', function() {
     return 'Hello World';
 });
-
+*/
 Route::get('hello/json', function(){
 	$data = ['name' => 'yongil', 'gender' => 'Man'];
 	return response()->json($data);
@@ -163,3 +169,26 @@ Route::get('home', [
 
 /* 메일 보내기 테스트 */
 Route::get('mail/{mailto}', 'MailController@sendMail');
+
+Event::listen('user.login', function($user) {
+    $user->last_login = (new DateTime)->format('Y-m-d H:i:s');
+
+    return $user->save();
+});
+
+
+Route::resource('posts', 'PostsController');
+
+Route::get('/', function() {
+    $text =<<<EOT
+**Note** To make lists look nice, you can wrap items with hanging indents:
+
+    -   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+        Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+        viverra nec, fringilla in, laoreet vitae, risus.
+    -   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+        Suspendisse id sem consectetuer libero luctus adipiscing.
+EOT;
+
+    return app(ParsedownExtra::class)->text($text);
+});
