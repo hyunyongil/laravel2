@@ -106,7 +106,7 @@ class OrmController extends Controller
 		return response()->json(['result' => $res, 'task' => $task],
 				200, [], JSON_PRETTY_PRINT);
 	}
-	public function getUpdate2($id)
+	public function getUpdate2($id, $ret)
 	{
 		$param = [
 			'name' => '엡데이트2 - 예제 작성',
